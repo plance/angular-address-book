@@ -1,0 +1,53 @@
+<h2>
+	Дом
+	<span class="pull-right">
+		<a class="btn btn-primary btn-xs" ng-click="showModalAddHome()" uib-tooltip="Создать адрес" tooltip-placement="left">
+			<span class="glyphicon glyphicon-plus-sign"></span>
+		</a>
+	</span>
+</h2>
+
+<div ng-if="Homes.length > 0">
+	<form>
+		<div class="row form-group">
+			<div class="col-sm-4">
+				<input class="form-control input-sm" placeholder="введите название адреса..." ng-model="search_home">
+			</div>
+		</div>
+	</form>
+	<div class="list-group">
+		<div class="list-group-item" ng-repeat="Home in Homes | orderBy:'title' | filter:search_home">
+
+			<a uib-tooltip="Дата создания: {{Home.date_create | date:'yyyy.MM.dd HH:mm:ss'}}" ui-sref=".contact({'home_id': Home.$id})">
+				<span ng-if="Home.country">{{Home.country}},</span>
+				<span ng-if="Home.area">{{Home.area}} обл.,</span>
+				<span ng-if="Home.city">г. {{Home.city}},</span>
+				<span ng-if="Home.address">ул. {{Home.address}}</span>
+				<span ng-if="Home.building && Home.room">
+					{{Home.building}} / {{Home.room}}
+				</span>
+				<em ng-if="Home.zip">({{Home.zip}})</em>
+			</a>
+			<span 
+				class="glyphicon glyphicon-home" 
+				uib-tooltip="Текущее место жительство"
+				ng-if="Home.is_primary === 'yes'"
+				>
+			</span>
+			<span class="pull-right">
+				<a class="btn btn-default btn-xs" uib-tooltip="Редактировать адрес" tooltip-placement="left" ng-click="showModalEditHome(Home.$id)">
+					<span class="glyphicon glyphicon-pencil"></span>
+				</a>
+				<a class="btn btn-default btn-xs" uib-tooltip="Удалить адрес" tooltip-placement="left" ng-click="showModalDeleteHome(Home.$id)">
+					<span class="glyphicon glyphicon-trash"></span>
+				</a>
+			</span>
+		</div>
+	</div>
+	<div ui-view></div>
+</div>
+<p class="text-center" ng-if="Homes.length === 0">
+	<em>Адреса отсутствуют</em>
+</p>
+
+<div ng-include="'app/user/view/home/modal/address.html'"></div>

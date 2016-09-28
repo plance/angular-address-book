@@ -1,0 +1,16 @@
+{
+	"name": "angular-address-book",
+	"dependencies": {
+		"jquery": "*",
+		"bootstrap": "3.3.7",
+
+		"angular": "*",
+		"angular-route": "*",
+		"angular-ui-router": "*",
+
+		"firebase": "*",
+		"angularfire": "*",
+
+		"angular-bootstrap": "*"
+	}
+}

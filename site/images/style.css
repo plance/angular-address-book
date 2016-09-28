@@ -1,0 +1,35 @@
+.navbar-brand > img {
+  display: inline; }
+
+html,
+body {
+  height: 100%; }
+
+footer {
+  height: 60px;
+  background-color: #f5f5f5;
+  border-top: 1px solid #ddd;
+  padding-top: 20px; }
+
+.skin-top {
+  border-radius: 0; }
+
+.skin-wrap {
+  min-height: 100%;
+  height: auto;
+  margin: 0 auto -60px;
+  padding: 0 0 60px 0; }
+  .skin-wrap > .container {
+    padding: 80px 0 20px 0; }
+
+.page-user-view .r-table-user tbody tr th {
+  width: 140px; }
+
+.page-user-view .r-table-contact tbody tr th {
+  width: 180px; }
+
+.page-user-view .r-table-address tbody tr th {
+  width: 130px; }
+
+.page-auth form {
+  max-width: 500px; }

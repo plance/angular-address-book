@@ -1,0 +1,113 @@
+<ol class="breadcrumb">
+	<li>
+		<a href="#/book">Адресные книги</a>
+	</li>
+	<li>
+		<a href="#/book/{{Book.$id}}">{{Book.title}}</a>
+	</li>
+	<li>
+		{{User.display_name}}
+	</li>
+</ol>
+<div class="page-user-view">
+	<h1>
+		{{User.display_name}}
+		<span class="pull-right">
+			<a href="#/user/edit/{{Book.$id}}/{{User.$id}}" class="btn btn-primary btn-xs" uib-tooltip="Редактировать контакт" tooltip-placement="left">
+				<span class="glyphicon glyphicon-pencil"></span>
+			</a>
+			<a class="btn btn-primary btn-xs" uib-tooltip="Перенести контакт в другую адресную книгу" tooltip-placement="left" ng-click="showModalMoveUser()">
+				<span class="glyphicon glyphicon-random"></span>
+			</a>
+			<a class="btn btn-danger btn-xs" uib-tooltip="Удалить контакт" tooltip-placement="left" ng-click="showModalDeleteUser()">
+				<span class="glyphicon glyphicon-trash"></span>
+			</a>
+		</span>
+	</h1>
+	<table class="table r-table-user">
+		<tbody>
+			<tr ng-if="User.last_name">
+				<th>Фамилия:</th>
+				<td>{{User.last_name}}</td>
+			</tr>
+			<tr ng-if="User.first_name">
+				<th>Имя:</th>
+				<td>{{User.first_name}}</td>
+			</tr>
+			<tr ng-if="User.patronymic">
+				<th>Отчество:</th>
+				<td>{{User.patronymic}}</td>
+			</tr>
+			<tr ng-if="User.display_name">
+				<th>Отображать как:</th>
+				<td>{{User.display_name}}</td>
+			</tr>
+			<tr ng-if="User.nickname">
+				<th>Ник в сети:</th>
+				<td>{{User.nickname}}</td>
+			</tr>
+			<tr ng-if="User.birthday">
+				<th>Дата рождения:</th>
+				<td>{{User.birthday | date:'yyyy.MM.dd'}}</td>
+			</tr>
+			<tr ng-if="User.sex">
+				<th>Пол:</th>
+				<td>
+					<span ng-if="User.sex === 'male'">мужской</span>
+					<span ng-if="User.sex === 'fmale'">женский</span>
+				</td
+			</tr>
+		</tbody>
+	</table>
+
+	<div class="r-tabs">
+		<ul class="nav nav-tabs" role="tablist">
+			<li role="presentation" ng-class="{'active': current_tab == 'contact'}">
+				<a ui-sref=".contact" data-target="#contact" role="tab" data-toggle="tab">Личное</a>
+			</li>
+			<li role="presentation" ng-class="{'active': current_tab == 'home'}">
+				<a ui-sref=".home" data-target="#home" role="tab" data-toggle="tab">Дом</a>
+			</li>
+			<li role="presentation" ng-class="{'active': current_tab == 'work'}">
+				<a ui-sref=".work" data-target="#work" role="tab" data-toggle="tab">Работа</a>
+			</li>
+		</ul>
+		<div class="tab-content">
+			<div ui-view></div>
+		</div>
+	</div>
+</div>
+
+<div ng-include="'app/_partial/view/modal/delete.html'"></div>
+<div ng-include="'app/_partial/view/modal/contact.html'"></div>
+
+<script type="text/ng-template" id="modal-user-move">
+	<div class="modal-header">
+		<button type="button" class="close" ng-click="cancel()">
+			<span aria-hidden="true">&times;</span>
+		</button>
+		<h4 class="modal-title">
+			Переместить контакт?
+		</h4>
+	</div>
+	<div class="modal-body">
+		<div class="form-group">
+			<label for="Book">
+				Выберете адресную книгу в которую нужно перенести/копировать контакт:
+			</label>
+			<select 
+				name="Book" 
+				ng-model="Book" 
+				ng-options="option.title for option in Books | orderBy:'title' track by option.$id"
+				class="form-control" 
+				id="Book">
+				<option value="">- выберете адресную книгу -</option>
+			</select>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-default" ng-click="cancel()">Отмена</button>
+		<button type="button"  ng-disabled="!Book"  class="btn btn-primary" ng-click="copy()">Копировать</button>
+		<button type="button"  ng-disabled="!Book"  class="btn btn-primary" ng-click="move()">Переместить</button>
+	</div>
+</script>

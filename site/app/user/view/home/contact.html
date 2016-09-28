@@ -1,0 +1,61 @@
+<hr>
+<h3>
+	Адрес
+	<span 
+		class="glyphicon glyphicon-home" 
+		uib-tooltip="Текущее место жительство"
+		ng-if="Address.is_primary === 'yes'"
+		style="font-size: 18px" 
+		>
+	</span>
+	<span class="pull-right">
+		<a class="btn btn-primary btn-xs" uib-tooltip="Редактировать адрес" tooltip-placement="left" ng-click="showModalEditHome(Address.$id)">
+			<span class="glyphicon glyphicon-pencil"></span>
+		</a>
+		<a class="btn btn-danger btn-xs" uib-tooltip="Удалить адрес" tooltip-placement="left" ng-click="showModalDeleteHome(Address.$id)">
+			<span class="glyphicon glyphicon-trash"></span>
+		</a>
+	</span>
+</h3>
+<table class="table r-table-address">
+	<tbody>
+		<tr ng-if="Address.country">
+			<th>Страна:</th>
+			<td>{{Address.country}}</td>
+		</tr>
+		<tr ng-if="Address.zip">
+			<th>Индекс:</th>
+			<td>{{Address.zip}}</td>
+		</tr>
+		<tr ng-if="Address.area">
+			<th>Область:</th>
+			<td>{{Address.area}}</td>
+		</tr>
+		<tr ng-if="Address.city">
+			<th>Город:</th>
+			<td>{{Address.city}}</td>
+		</tr>
+		<tr ng-if="Address.address">
+			<th>Адрес:</th>
+			<td>{{Address.address}}</td>
+		</tr>
+		<tr ng-if="Address.building">
+			<th>Дом:</th>
+			<td>{{Address.building}}</td>
+		</tr>
+		<tr ng-if="Address.room">
+			<th>Квартира:</th>
+			<td>{{Address.room}}</td>
+		</tr>
+	</tbody>
+</table>
+
+<h3>
+	Контакты
+	<span class="pull-right">
+		<a class="btn btn-primary btn-xs" ng-click="showModalAddContact(Address.$id)" uib-tooltip="Добавить контактную информацию" tooltip-placement="left">
+			<span class="glyphicon glyphicon-plus-sign"></span>
+		</a>
+	</span>
+</h3>
+<div ng-include="'app/user/view/_partial/contacts-table.html'"></div>

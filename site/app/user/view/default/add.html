@@ -1,0 +1,81 @@
+<ol class="breadcrumb">
+	<li ng-repeat="Breadcrumb in breadcrumbs">
+		<a href="{{Breadcrumb.link}}" ng-if="Breadcrumb.link">{{Breadcrumb.title}}</a>
+		<span ng-if="Breadcrumb.link === null">{{Breadcrumb.title}}</span>
+	</li>
+</ol>
+<div class="page-user-add">
+	<h1>{{page_title}}</h1>
+	<form class="form-horizontal" name="FormUser" ng-submit="submit()">
+		<div class="form-group">
+			<label for="user-last_name" class="col-sm-2 control-label">Фамилия</label>
+			<div class="col-sm-10">
+				<input type="text" name="last_name" ng-model="User.last_name" class="form-control" id="user-last_name">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="user-first_name" class="col-sm-2 control-label">Имя</label>
+			<div class="col-sm-10">
+				<input type="text" name="first_name" ng-model="User.first_name" class="form-control" id="user-first_name">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="user-patronymic" class="col-sm-2 control-label">Отчество</label>
+			<div class="col-sm-10">
+				<input type="text" name="patronymic" ng-model="User.patronymic" class="form-control" id="user-patronymic">
+			</div>
+		</div>
+		<div class="form-group" ng-class="{'has-error': FormUser.display_name.$invalid}">
+			<label for="user-display_name" class="col-sm-2 control-label">Отображать как</label>
+			<div class="col-sm-10">
+				<input type="text" name="display_name" class="form-control" id="user-display_name"
+					ng-model="User.display_name"
+					ng-minlength="2"
+				>
+				<p class="help-block" ng-show="FormUser.display_name.$error.minlength">Минимальная длина 2 символа</p>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="user-nickname" class="col-sm-2 control-label">Ник в сети</label>
+			<div class="col-sm-10">
+				<input type="text" name="nickname" class="form-control" id="user-nickname" ng-model="User.nickname">
+			</div>
+		</div>
+		<div class="form-group" ng-class="{'has-error': FormUser.birthday.$invalid}">
+			<label for="user-birthday" class="col-sm-2 control-label">Дата рождения</label>
+			<div class="col-sm-10">
+				<p class="input-group">
+					<input type="text" name="birthday" class="form-control" id="user-birthday" readonly="readonly"
+						ng-model="User.birthday"
+						uib-datepicker-popup="yyyy.MM.dd" 
+						is-open="Datepicker.opened" 
+						datepicker-options="Datepicker.options" 
+						close-text="Закрыть" 
+						clear-text="Очистить" 
+						current-text="Сегодня"
+					>
+					<span class="input-group-btn">
+						<button type="button" class="btn btn-default" ng-click="Datepicker.open()"><i class="glyphicon glyphicon-calendar"></i></button>
+					</span>
+				</p>
+				<p class="help-block" ng-show="FormUser.birthday.$error.date">Не правильный формат даты</p>
+				
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="user-sex" class="col-sm-2 control-label">Пол</label>
+			<div class="col-sm-10">
+				<select name="sex" ng-model="User.sex" class="form-control" id="user-sex">
+					<option value="">- не указан -</option>
+					<option value="male">мужской</option>
+					<option value="female">женский</option>
+				</select>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-10">
+				<button type="submit" ng-disabled="!User.display_name || FormUser.birthday.$invalid" class="btn btn-primary">сохранить</button>
+			</div>
+		</div>
+	</form>
+</div>

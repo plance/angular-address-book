@@ -1,0 +1,53 @@
+<h2>
+	Работа
+	<span class="pull-right">
+		<a class="btn btn-primary btn-xs" ng-click="showModalAddWork()" uib-tooltip="Создать адрес" tooltip-placement="left">
+			<span class="glyphicon glyphicon-plus-sign"></span>
+		</a>
+	</span>
+</h2>
+
+<div ng-if="Works.length > 0">
+	<form>
+		<div class="row form-group">
+			<div class="col-sm-4">
+				<input class="form-control input-sm" placeholder="введите название адреса..." ng-model="search_work">
+			</div>
+		</div>
+	</form>
+	<div class="list-group">
+		<div class="list-group-item" ng-repeat="Work in Works | orderBy:'title' | filter:search_work">
+
+			<a uib-tooltip="Дата создания: {{Work.date_create | date:'yyyy.MM.dd HH:mm:ss'}}" ui-sref=".contact({'work_id': Work.$id})">
+				<span ng-if="Work.country">{{Work.country}},</span>
+				<span ng-if="Work.area">{{Work.area}} обл.,</span>
+				<span ng-if="Work.city">г. {{Work.city}},</span>
+				<span ng-if="Work.address">ул. {{Work.address}}</span>
+				<span ng-if="Work.building && Work.room">
+					{{Work.building}} / {{Work.room}}
+				</span>
+				<em ng-if="Work.zip">({{Work.zip}})</em>
+			</a>
+			<span 
+				class="glyphicon glyphicon-home" 
+				uib-tooltip="Текущее место работы"
+				ng-if="Work.is_primary === 'yes'"
+				>
+			</span>
+			<span class="pull-right">
+				<a class="btn btn-default btn-xs" uib-tooltip="Редактировать адрес" tooltip-placement="left" ng-click="showModalEditWork(Work.$id)">
+					<span class="glyphicon glyphicon-pencil"></span>
+				</a>
+				<a class="btn btn-default btn-xs" uib-tooltip="Удалить адрес" tooltip-placement="left" ng-click="showModalDeleteWork(Work.$id)">
+					<span class="glyphicon glyphicon-trash"></span>
+				</a>
+			</span>
+		</div>
+	</div>
+	<div ui-view></div>
+</div>
+<p class="text-center" ng-if="Works.length === 0">
+	<em>Адреса отсутствуют</em>
+</p>
+
+<div ng-include="'app/user/view/work/modal/address.html'"></div>

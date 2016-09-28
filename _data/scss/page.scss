@@ -1,0 +1,19 @@
+.page-user-view {
+	.r-table-user tbody tr th {
+		width: 140px;
+	}
+	
+	.r-table-contact tbody tr th {
+		width: 180px;
+	}
+
+	.r-table-address tbody tr th {
+		width: 130px;
+	}
+}
+
+.page-auth {
+	form {
+		max-width: 500px;
+	}
+}

@@ -1,0 +1,47 @@
+<script type="text/ng-template" id="modal-user-work-address">
+	<form class="form-horizontal" ng-submit="submit()">
+		<div class="modal-header">
+			<button type="button" class="close" ng-click="cancel()">
+				<span aria-hidden="true">&times;</span>
+			</button>
+			<h4 class="modal-title">
+				{{title}}
+			</h4>
+		</div>
+		<div class="modal-body">
+			<div ng-include="'app/user/view/_partial/address-form.html'"></div>
+			<div class="form-group">
+				<label for="Address-organization" class="col-sm-2 control-label">Организация</label>
+				<div class="col-sm-10">
+					<input type="text" name="organization" ng-model="Address.organization" class="form-control" id="Address-organization">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="Address-department" class="col-sm-2 control-label">Отдел</label>
+				<div class="col-sm-10">
+					<input type="text" name="department" ng-model="Address.department" class="form-control" id="Address-department">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="Address-post" class="col-sm-2 control-label">Должность</label>
+				<div class="col-sm-10">
+					<input type="text" name="post" ng-model="Address.post" class="form-control" id="Address-post">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="Address-is_primary" class="col-sm-2 control-label">Работа</label>
+				<div class="col-sm-10">
+					<select name="is_primary" ng-model="Address.is_primary" class="form-control" id="Address-is_primary">
+						<option value="">- сделайте выбор -</option>
+						<option value="no">нет, я сейчас здесь не работаю</option>
+						<option value="yes">да, я сейчас здесь работаю</option>
+					</select>
+				</div>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-default" ng-click="cancel()">Отмена</button>
+			<button type="submit" ng-disabled="!Address.city || !Address.building || !Address.room" class="btn btn-primary">Сохранить</button>
+		</div>
+	</form>	
+</script>

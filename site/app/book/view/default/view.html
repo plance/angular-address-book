@@ -1,0 +1,41 @@
+<ol class="breadcrumb">
+	<li>
+		<a href="#/book">Адресные книги</a>
+	</li>
+	<li>
+		{{Book.title}}
+	</li>
+</ol>
+<div class="page-book-view">
+	<h1>
+		{{Book.title}}
+		<span class="pull-right">
+			<a href="#/user/add/{{Book.$id}}" class="btn btn-primary btn-xs" uib-tooltip="Добавить контакт в адресную книгу" tooltip-placement="left">
+				<span class="glyphicon glyphicon-plus-sign"></span>
+			</a>
+			<a href="#/book/edit/{{Book.$id}}" class="btn btn-primary btn-xs" uib-tooltip="Редактировать адресную книгу" tooltip-placement="left">
+				<span class="glyphicon glyphicon-pencil"></span>
+			</a>
+			<a class="btn btn-danger btn-xs" uib-tooltip="Удалить адресную книгу" tooltip-placement="left" ng-click="showModalDelete()">
+				<span class="glyphicon glyphicon-trash"></span>
+			</a>
+		</span>
+	</h1>
+	<form>
+		<div class="row form-group">
+			<div class="col-sm-4">
+				<input class="form-control input-sm" placeholder="введите имя контакта..." ng-model="search_user">
+			</div>
+		</div>
+	</form>
+	<div class="list-group">
+		<div class="list-group-item" ng-repeat="User in Users | orderBy:'display_name' | filter:search_user">
+			<span class="glyphicon glyphicon-user"></span>
+			<a href="#/book/{{Book.$id}}/{{User.$id}}/contact" uib-tooltip="Дата создания: {{User.date_create | date:'yyyy.MM.dd HH:mm:ss'}}">
+				{{User.display_name}}
+			</a>
+		</div>
+	</div>
+</div>
+
+<div ng-include="'app/_partial/view/modal/delete.html'"></div>

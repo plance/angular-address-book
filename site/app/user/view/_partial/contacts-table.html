@@ -1,0 +1,23 @@
+<table class="table r-table-contact" ng-if="Contacts.length > 0">
+	<tbody>
+		<tr ng-repeat="Contact in Contacts">
+			<th>{{contacts[Contact.type]}}</th>
+			<td>
+				<span uib-tooltip="Дата создания: {{Contact.date_create | date:'yyyy.MM.dd HH:mm:ss'}}">
+					{{Contact.content}}
+				</span>
+				<span class="pull-right">
+					<a class="btn btn-default btn-xs" uib-tooltip="Редактировать контактную информацию" tooltip-placement="left" ng-click="showModalEditContact(Contact.$id)">
+						<span class="glyphicon glyphicon-pencil"></span>
+					</a>
+					<a class="btn btn-default btn-xs" uib-tooltip="Удалить контактную информацию" tooltip-placement="left" ng-click="showModalDeleteContact(Contact.$id)">
+						<span class="glyphicon glyphicon-trash"></span>
+					</a>
+				</span>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<p class="text-center" ng-if="Contacts.length === 0">
+	<em>Контактные данные отсутствуют</em>
+</p>

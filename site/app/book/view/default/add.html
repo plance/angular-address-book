@@ -1,0 +1,22 @@
+<ol class="breadcrumb">
+	<li ng-repeat="Breadcrumb in breadcrumbs">
+		<a href="{{Breadcrumb.link}}" ng-if="Breadcrumb.link">{{Breadcrumb.title}}</a>
+		<span ng-if="Breadcrumb.link === null">{{Breadcrumb.title}}</span>
+	</li>
+</ol>
+<div class="page-book-add">
+	<h1>{{page_title}}</h1>
+	<form class="form-horizontal" ng-submit="submit()">
+		<div class="form-group">
+			<label for="book-title" class="col-sm-2 control-label">Название</label>
+			<div class="col-sm-10">
+				<input type="text" name="title" ng-model="Book.title" ng-required="true" class="form-control" id="book-title">
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-10">
+				<button type="submit" ng-disabled="!Book.title" class="btn btn-primary">сохранить</button>
+			</div>
+		</div>
+	</form>
+</div>

@@ -1,0 +1,42 @@
+<div class="form-group">
+	<label for="Address-country" class="col-sm-2 control-label">Страна</label>
+	<div class="col-sm-10">
+		<input type="text" name="country" ng-model="Address.country" class="form-control" id="Address-country">
+	</div>
+</div>
+<div class="form-group">
+	<label for="Address-zip" class="col-sm-2 control-label">Индекс</label>
+	<div class="col-sm-10">
+		<input type="text" name="zip" ng-model="Address.zip" class="form-control" id="Address-zip" uib-tooltip="Почтовый индекс">
+	</div>
+</div>
+<div class="form-group">
+	<label for="Address-area" class="col-sm-2 control-label">Область</label>
+	<div class="col-sm-10">
+		<input type="text" name="area" ng-model="Address.area" class="form-control" id="Address-area">
+	</div>
+</div>
+<div class="form-group">
+	<label for="Address-city" class="col-sm-2 control-label">Город</label>
+	<div class="col-sm-10">
+		<input type="text" name="city" ng-model="Address.city" required class="form-control" id="Address-city">
+	</div>
+</div>
+<div class="form-group">
+	<label for="Address-address" class="col-sm-2 control-label">Адрес</label>
+	<div class="col-sm-10">
+		<input type="text" name="address" ng-model="Address.address" required class="form-control" id="Address-address">
+	</div>
+</div>
+<div class="form-group">
+	<label for="Address-building" class="col-sm-2 control-label">{{building_title}}</label>
+	<div class="col-sm-10">
+		<input type="text" name="building" ng-model="Address.building" required class="form-control" id="Address-building">
+	</div>
+</div>
+<div class="form-group">
+	<label for="Address-room" class="col-sm-2 control-label">{{room_title}}</label>
+	<div class="col-sm-10">
+		<input type="text" name="room" ng-model="Address.room" required class="form-control" id="Address-room">
+	</div>
+</div>

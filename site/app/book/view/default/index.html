@@ -1,0 +1,31 @@
+<ol class="breadcrumb">
+	<li>
+		Адресные книги
+	</li>
+</ol>
+<div class="page-book-index">
+	<h1>
+		Адресные книги
+		<span class="pull-right">
+			<a href="#/book/add" class="btn btn-primary btn-xs" uib-tooltip="Создать адресную книгу" tooltip-placement="left">
+				<span class="glyphicon glyphicon-plus-sign"></span>
+			</a>
+		</span>
+	</h1>
+	<form>
+		<div class="row form-group">
+			<div class="col-sm-4">
+				<input class="form-control input-sm" placeholder="введите название книги..." ng-model="search_book">
+			</div>
+		</div>
+	</form>
+	<div class="list-group">
+		<div class="list-group-item" ng-repeat="Book in Books | orderBy:'title' | filter:search_book">
+			<span class="glyphicon glyphicon-book"></span>
+			<a href="#/book/{{Book.$id}}" uib-tooltip="Дата создания: {{Book.date_create | date:'yyyy.MM.dd HH:mm:ss'}}">
+				{{Book.title}}
+			</a>
+			<span class="badge">{{count_ar[Book.$id]}}</span>
+		</div>
+	</div>
+</div>
